@@ -9,9 +9,9 @@ import (
 type ITaskRepo interface {
 	Create(task *model.Task) error
 	GetAll() ([]model.Task, error)
-	GetByID(id uint) (*model.Task, error)
+	GetByID(id int) (*model.Task, error)
 	Update(task *model.Task) error
-	Delete(id uint) error
+	Delete(id int) error
 }
 
 type repo struct {
@@ -34,7 +34,7 @@ func (r *repo) GetAll() ([]model.Task, error) {
 	return tasks, err
 }
 
-func (r *repo) GetByID(id uint) (*model.Task, error) {
+func (r *repo) GetByID(id int) (*model.Task, error) {
 	var task model.Task
 
 	err := r.db.First(&task, id).Error
@@ -46,6 +46,6 @@ func (r *repo) Update(task *model.Task) error {
 	return r.db.Save(task).Error
 }
 
-func (r *repo) Delete(id uint) error {
+func (r *repo) Delete(id int) error {
 	return r.db.Delete(&model.Task{}, id).Error
 }
