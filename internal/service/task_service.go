@@ -28,7 +28,6 @@ func (s *service) Create(task model.Task) error {
   if strings.TrimSpace(task.Title) == "" {
     return errors.New("empty title")
   }
-
   return s.repo.Create(&task)
 }
 

@@ -28,17 +28,13 @@ func (r *repo) Create(task *model.Task) error {
 
 func (r *repo) GetAll() ([]model.Task, error) {
 	var tasks []model.Task
-
 	err := r.db.Find(&tasks).Error
-
 	return tasks, err
 }
 
 func (r *repo) GetByID(id int) (*model.Task, error) {
 	var task model.Task
-
 	err := r.db.First(&task, id).Error
-
 	return &task, err
 }
 
